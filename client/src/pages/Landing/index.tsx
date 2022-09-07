@@ -57,6 +57,7 @@ function LandingPage() {
       setPosts(() => [data, ...posts]);
       setTitle(undefined);
       setBody(undefined);
+      console.log(posts, [data, ...posts]);
     } catch (err: any) {
       console.error("ERROR:", err);
     }
