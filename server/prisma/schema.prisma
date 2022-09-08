@@ -17,3 +17,11 @@ model Post {
   title String
   textBody String?
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  username String
+  password String
+  sessionId String?
+  aboutMe String?
+}

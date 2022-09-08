@@ -8,3 +8,13 @@ CREATE TABLE "Post" (
 
     CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
 );
+
+CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "sessionId" TEXT,
+    "aboutMe" TEXT,
+
+    PRIMARY KEY ("id")
+)

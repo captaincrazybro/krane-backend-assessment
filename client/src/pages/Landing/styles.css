@@ -29,6 +29,20 @@
   .App-link {
     color: #61dafb;
   }
+
+  .Delete-button {
+    margin-left: auto; 
+    margin-right: 0;
+    padding: 2px 5px;
+  }
+
+  .Delete-button:hover,
+  .Delete-button:active,
+  .Delete-button:focus {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+  }
   
   @keyframes App-logo-spin {
     from {

@@ -1,6 +1,9 @@
 export const API_ENDPOINT = {
     UPLOAD_POST: "/api/post",
     GET_POSTS: "/api/post",
+    DELETE_POST: "/api/post/delete",
+    LOGIN_POST: "/api/login",
+    SESSION_POST: "/api/verify-session"
 }
 
 export const DEMO_TEXT = {
