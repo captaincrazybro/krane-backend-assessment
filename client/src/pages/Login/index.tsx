@@ -3,10 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_ENDPOINT } from "../../commons/";
 
-function Login() {
+async function Login() {
   const [username, setUsername] = useState<string | undefined>("");
   const [password, setPassword] = useState<string | undefined>("");
   const [message, setMessage] = useState<string | undefined>();
+  const navigate = useNavigate();
 
   async function onSubmitLogin(e: any) {
     e.preventDefault();
@@ -21,7 +22,6 @@ function Login() {
       if (data.sessionId !== undefined) {
         localStorage.setItem("sessionId", data.sessionId);
 
-        const navigate = useNavigate();
         navigate("/");
         setMessage(undefined);
       }
@@ -30,6 +30,7 @@ function Login() {
     }
   }
 
+  await verifyLogin();
   const isLoggedIn = localStorage.getItem("sessionId");
   if (isLoggedIn) {
     return (
@@ -76,7 +77,7 @@ export async function verifyLogin() {
     })
 
     if (!data.hasValidSession) {
-      localStorage.getItem("sessionId");
+      localStorage.removeItem("sessionId")    
     }
   } catch (err: any) {
     console.error("ERROR:", err);

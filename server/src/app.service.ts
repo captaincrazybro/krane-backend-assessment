@@ -87,7 +87,7 @@ const INVALID_USERNAME_OR_PASSWORD: object = {
 }
 const LOGIN_SUCCESSFUL = (sessionId): object => {
   return {
-    message: "You successfully logged in!",
+    message: "You have successfully logged in!",
     sessionId: sessionId,
   }
 }

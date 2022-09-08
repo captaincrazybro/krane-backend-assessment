@@ -1,5 +1,7 @@
 import { NestFactory } from '@nestjs/core';
+import { PrismaClient } from '@prisma/client';
 import { AppModule } from './app.module';
+
 
 const PORT = 7777;
 
