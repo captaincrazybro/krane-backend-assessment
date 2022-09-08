@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class AppService {
@@ -41,7 +41,7 @@ export class AppService {
     return deletedPost;
   }
 
-  async login(password: string, username: string): Promise<object> {
+  async login(username: string, password: string): Promise<object> {
     let prismaService = new PrismaService();
     let user = await prismaService.user.findFirst({
       where: {
@@ -69,7 +69,7 @@ export class AppService {
     return LOGIN_SUCCESSFUL(sessionId);
   }
 
-  async verifySession(sessionId: string) {
+  async getUser(sessionId: string) {
     let prismaService = new PrismaService();
     let user = await prismaService.user.findFirst({
       where: {
@@ -78,7 +78,7 @@ export class AppService {
     })
 
     prismaService.$disconnect();
-    return VERIFY_SESSION_RESPONSE(user);
+    return GET_USER_RESPONSE(user);
   }
 }
 
@@ -91,8 +91,15 @@ const LOGIN_SUCCESSFUL = (sessionId): object => {
     sessionId: sessionId,
   }
 }
-const VERIFY_SESSION_RESPONSE = (sessionIsValid): object => {
-  return {
-    sessionIsValid: sessionIsValid,
+const GET_USER_RESPONSE = (user): object => {
+  let response = {
+    sessionIsValid: user != null,
   }
+
+  if (user != null) {
+    response["username"] = user.username;
+    response["aboutMe"] = user.aboutMe;
+  }
+
+  return response;
 }

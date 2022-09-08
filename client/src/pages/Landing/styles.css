@@ -1,36 +1,4 @@
-.App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    font-size: calc(10px + 2vmin);
-    height: 7vh;
-    display: flex;
-    align-items: center;
-    color: white;
-  }
-  
-  .App-body{
-    margin-top: 50px;
-    height: auto;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-
-  .Delete-button {
+.Delete-button {
     margin-left: auto; 
     margin-right: 0;
     padding: 2px 5px;
@@ -43,13 +11,3 @@
     color: blue;
     cursor: pointer;
   }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  

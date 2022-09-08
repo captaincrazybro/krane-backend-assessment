@@ -12,6 +12,6 @@ export class LoginPostBody {
   password: string;
 }
 
-export class VerifySessionPostBody {
+export class GetUserPostBody {
   sessionId: string;
 }

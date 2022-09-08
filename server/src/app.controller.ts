@@ -1,6 +1,6 @@
 import { Controller, Get, Body, Post, Req, Delete } from '@nestjs/common';
 import { AppService } from './app.service';
-import { DeletePostBody, CreatePostBody, LoginPostBody, VerifySessionPostBody } from './app.body-structures';
+import { DeletePostBody, CreatePostBody, LoginPostBody, GetUserPostBody } from './app.body-structures';
 
 @Controller()
 export class AppController {
@@ -31,8 +31,8 @@ export class AppController {
     return this.appService.login(body.username, body.password);
   }
 
-  @Post("/api/verify-session")
-  verifySession(@Body() body: VerifySessionPostBody): object {
-    return this.appService.verifySession(body.sessionId);
+  @Post("/api/user") 
+  getUser(@Body() body: GetUserPostBody): object {
+    return this.appService.getUser(body.sessionId);
   }
 }

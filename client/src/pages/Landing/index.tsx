@@ -1,7 +1,6 @@
-import { useReducer, useState, useEffect } from "react";
+import { useReducer, useState } from "react";
 import axios from "axios";
 import { useFetch } from "../../hooks/useFetch";
-import { IPost } from "../../interfaces";
 import { DEMO_TEXT, API_ENDPOINT } from "../../commons/";
 import "./styles.css";
 
@@ -81,42 +80,35 @@ function LandingPage() {
   };
 
   return (
-    <div className="App min-h-screen">
-      <header className="App-header bg-black">
-        <h1 className="px-5">Krane Assessment</h1>
-      </header>
-      <section className="App-body flex items-center justify-center">
-        <div className="w-2/3 p-5  rounded text-white">
-          {error && (
-            <div
-              className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
-              role="alert"
-            >
-              <span className="font-medium">Error:</span>
-              {error}
-            </div>
-          )}
-          <div className="flex flex-row items-center justify-between">
-            <h1 className="text-2xl pb-5">Posts</h1>
-            <button
-              type="button"
-              onClick={togglePosting}
-              className="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"
-            >
-              {isPosting ? "View Posts" : "Make a Post"}
-            </button>
-          </div>
-          {isPosting ? (
-            <PostInputComponent uploadPost={uploadPost} title={title} setTitle={setTitle} body={body} setBody={setBody} />
-          ) : (
-            <>
-              {posts.map((post: any, i: number) => (
-                <PostComponent deletePost={deletePost} key={i} post={post} />
-              ))}
-            </>
-          )}
+    <div className="w-2/3 p-5  rounded text-white">
+      {error && (
+        <div
+          className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+          role="alert"
+        >
+          <span className="font-medium">Error:</span>
+          {error}
         </div>
-      </section>
+      )}
+      <div className="flex flex-row items-center justify-between">
+        <h1 className="text-2xl pb-5">Posts</h1>
+        <button
+          type="button"
+          onClick={togglePosting}
+          className="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"
+        >
+          {isPosting ? "View Posts" : "Make a Post"}
+        </button>
+      </div>
+      {isPosting ? (
+        <PostInputComponent uploadPost={uploadPost} title={title} setTitle={setTitle} body={body} setBody={setBody} />
+      ) : (
+        <>
+          {posts.map((post: any, i: number) => (
+            <PostComponent deletePost={deletePost} key={i} post={post} />
+          ))}
+        </>
+      )}
     </div>
   );
 }
