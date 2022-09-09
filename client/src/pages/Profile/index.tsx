@@ -1,18 +1,46 @@
-import { useState } from "react"
+import { ReactNode, useState } from "react"
+import { verifyLogin } from "../../components/LoginStatus";
 
 function Profile() {
+  const [noticeText, setNoticeText] = useState<string | null>(LOADING_PROFILE_TEXT);
+  const [user, setUser] = useState<any>();
+
+  if (localStorage.getItem("sessionId") != null) {
+    verifyLogin().then(data => {
+      if (data.sessionIsValid) {
+        console.log("is null!")
+        setUser(data);
+        setNoticeText(null)
+      } else {
+        setNoticeText(NOT_LOGGED_IN_TEXT)
+      }
+    })
+  } else {
+    setNoticeText(NOT_LOGGED_IN_TEXT)
+  }
+  
   return (
-    <div className="mb-5 bg-slate-100 text-black">
-      <slot className="flex"><a className="Delete-button" onClick={(e) => props.deletePost(e, props.post.id)}>Delete</a></slot>
-      <h1 className="py-3">{props.post.title || DEMO_TEXT.TITLE}</h1>
-      <p className="p-5">{props.post.textBody || "No Body"}</p>
-      <div className="w-full flex align-left">
-        <p className="px-3">
-          {props.post.createdAt ? new Date(props.post.createdAt).toDateString() : DEMO_TEXT.CREATED_AT}
-        </p>
-      </div>
+    <div>
+      {noticeText == null ? (
+        <div className="p-5 bg-slate-100 text-left">
+          <h1 className="py-3">Weclome {user.username}!</h1>
+          <h1 className="py-3">About Me:</h1>
+          <p>{user.aboutMe}</p>
+        </div>
+      ) : (
+        <p>{noticeText}</p>
+      )}
     </div>
   )
 }
+
+function NotLoggedInText() {
+  return (
+    <p>You are not logged in!</p>
+  )
+}
+
+const LOADING_PROFILE_TEXT = "Your profile is loading...";
+const NOT_LOGGED_IN_TEXT = "You are not logged in!";
 
 export { Profile }

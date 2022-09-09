@@ -18,10 +18,12 @@ export default function LoginStatus() {
       window.location.reload();
     }
 
-    verifyLogin().then(username => {
-      setUsername(username);
-      setIsLoggedIn(localStorage.getItem("sessionId") != null);
-    });
+    if (localStorage.getItem("sessionId") != null) {
+      verifyLogin().then(data => {
+        setUsername(data.username);
+        setIsLoggedIn(localStorage.getItem("sessionId") != null);
+      });
+    }
 
     useEffect(() => {
       setIsLoggedIn(localStorage.getItem("sessionId") != null);
@@ -30,7 +32,7 @@ export default function LoginStatus() {
     return (
       <div>
         {isLoggedIn ? (
-          <p className="ml-5">Welcome {username}! <FunctionLink onClick={onLogoutClick} className="Link ml-5 mr-2">Logout</FunctionLink></p>
+          <p className="ml-5"><a className="Link" href="/profile">Welcome {username}!</a> <FunctionLink onClick={onLogoutClick} className="Link ml-5 mr-2">Logout</FunctionLink></p>
         ) : (
           <a className="Link ml-2" href="/login">Login</a>
         )}
@@ -51,7 +53,7 @@ export async function verifyLogin() {
         localStorage.removeItem("sessionId")    
         return null;
       } else {
-        return data.username;
+        return data;
       }
     } catch (err: any) {
       console.error("ERROR:", err);
