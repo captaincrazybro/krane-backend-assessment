@@ -12,8 +12,12 @@ export default function App() {
           <Route path="/" element={<LandingPage />}>
             <Route index element={<LandingPage />} />
           </Route>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route index element={<Profile />} />
+          </Route>
+          <Route path="/login" element={<Login />}>
+            <Route index element={<Login />} />
+          </Route>
         </Routes>
       </Layout>
     </BrowserRouter>
