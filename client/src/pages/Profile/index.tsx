@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react"
+import { useState } from "react"
 import { verifyLogin } from "../../components/LoginStatus";
 
 function Profile() {
@@ -33,14 +33,5 @@ function Profile() {
     </div>
   )
 }
-
-function NotLoggedInText() {
-  return (
-    <p>You are not logged in!</p>
-  )
-}
-
-const LOADING_PROFILE_TEXT = "Your profile is loading...";
-const NOT_LOGGED_IN_TEXT = "You are not logged in!";
 
 export { Profile }

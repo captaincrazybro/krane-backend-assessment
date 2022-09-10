@@ -4,10 +4,6 @@ import * as crypto from 'crypto';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   async getPosts(): Promise<object> {
     let prismaService = new PrismaService();
     let posts = await prismaService.post.findMany();

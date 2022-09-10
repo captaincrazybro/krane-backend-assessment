@@ -2,7 +2,6 @@ import { API_ENDPOINT } from '../commons';
 import axios from 'axios';
 import { useState } from 'react';
 import FunctionLink from './FunctionLink';
-import { unstable_HistoryRouter } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import "./styles.css";
