@@ -19,8 +19,11 @@ export default function LoginStatus() {
 
     if (localStorage.getItem("sessionId") != null) {
       verifyLogin().then(data => {
-        setUsername(data.username);
-        setIsLoggedIn(localStorage.getItem("sessionId") != null);
+        setIsLoggedIn(data.sessionIsValid);
+        if (data.sessionIsValid) {
+          setUsername(data.username);
+        }
+        console.log(data.sessionIsValid);
       });
     }
 
@@ -50,10 +53,9 @@ export async function verifyLogin() {
 
       if (!data.sessionIsValid) {
         localStorage.removeItem("sessionId")    
-        return null;
-      } else {
-        return data;
       }
+        
+      return data;
     } catch (err: any) {
       console.error("ERROR:", err);
     }

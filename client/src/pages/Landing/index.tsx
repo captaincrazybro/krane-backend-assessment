@@ -1,7 +1,7 @@
 import { useReducer, useState } from "react";
 import axios from "axios";
 import { useFetch } from "../../hooks/useFetch";
-import { DEMO_TEXT, API_ENDPOINT } from "../../commons/";
+import { API_ENDPOINT } from "../../commons/";
 import PostComponent from "../../components/PostComponent";
 import { PostInputComponent } from "../../components/PostInputComponent";
 import "./styles.css";
